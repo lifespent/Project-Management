@@ -1,0 +1,41 @@
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>	
+
+  <div class="field">
+    <%= f.label :budget %><br />
+    <%= f.text_field :budget %>
+  </div>
+  <div class="field">
+    <%= f.label :begin %><br />
+    <%= f.date_select :begin %>
+  </div>
+  <div class="field">
+    <%= f.label :end %><br />
+    <%= f.date_select :end %>
+  </div>
+    <%= f.hidden_field :company_id %>
+	<%= f.fields_for :milestones do |builder| %>
+	  <%= render 'milestone_fields', f: builder %>
+	<% end %>
+	<%= link_to_add_fields "Add Milestones", f, :milestones %>
+	
+ <%= f.hidden_field :company_id, :value => @company_id %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<fieldset>
+	<%= f.label :title, "Milestone Title" %><br />
+	<%= f.text_field :title %><br />
+	<%= f.hidden_field :_destroy %>
+	<%= link_to "remove", '#', class: "remove_fields" %>
+	<%= f.fields_for :tasks do |builder| %>
+	    <%= render 'task_fields', f: builder %>
+	<% end %>
+	  <%= link_to_add_fields "Add Task", f, :tasks %>
+</fieldset>

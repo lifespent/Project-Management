@@ -1,0 +1,29 @@
+// Place all the styles related to the projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.complete {
+	color:#19990D;
+}
+.non_complete {
+	color:#991420;
+}
+.tasks {
+	padding:10px 0 10px 25px;
+	display:block;
+	
+}
+.description p {
+	padding: 0 0 0 10px;
+	margin:0;
+	font-size: 8pt;
+}
+.handle {
+	cursor: move;
+	font-size:8pt;
+	color:#efefef;
+	display:inline-block;
+
+}
+.editable {
+	display:inline-block;
+}

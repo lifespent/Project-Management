@@ -1,0 +1,77 @@
+<% @total_completetion = "0" %>
+<% @total_tasks = 0 %>
+<% i = 0 %>
+<% @complete_tasks = 0 %>
+<% @company = Company.find :all, :conditions => ['id = ?', @project.company_id]%>
+<% @company.each do |company| %>
+		<h3><%= company.name %></h3>
+<% @company_id = company.id  %>
+<% end %>
+	<h1><%= editable_field @project, :title, :onblur => "submit" %></h1>
+	<p id="notice"><%= notice %></p>
+<p>
+  <b>Milestones:</b>
+  <%= @milestone.count %>
+		<ul class="milestones" data-update-url="<%= sort_milestones_url %>">
+
+<% @milestone.each do |milestone| %>
+<% @task = Task.find :all, :order => "position", :conditions => ['milestone_id = ?', milestone[:id]] %>
+<% @percent_complete = Task.find :all, :conditions => ['milestone_id = ? and done = ?', milestone[:id], '1'] %>
+			<li id="milestone_<%= milestone.id %>"><strong><%= editable_field milestone, :title %></strong> 
+									<% @precision = (@percent_complete.count.to_f / @task.count) * 100 %>
+									(<%= number_with_precision(@precision, :precision => 2) %>&#37; Complete) <span class="handle">[drag]</span> 
+				<ul id="tasks" class="tasks" data-update-url="<%= sort_tasks_url %>">
+			<% @task.each do |task| %>
+					<li id="task_<%= task.id %>" class="description">
+						<% if task.done == '1'
+						  @status_class = "complete"
+						  @status = "Done"
+						else
+						  @status_class = "non_complete"
+						  @status = "Not Done"
+						end %>
+						 <span class="<%= @status_class %>"><%= task.title %> (<strong><%= @status %></strong>)</span> <span class="handle">[drag]</span>
+						<p><%= task.description %></p>
+					</li>
+				
+				
+			<% end %>
+				</ul>
+			</li>
+			<% 
+			if i == 0
+				@total_tasks = @task.count 
+				@complete_tasks = @percent_complete.count
+			else
+				@total_tasks = @total_tasks + @task.count
+				@complete_tasks = @complete_tasks + @percent_complete.count
+			end
+			%>
+			<% i =+ 1 %>
+<% end %>
+		</ul>
+			
+<p>
+		  <b>Project Completion:</b>
+			<% @precision = (@complete_tasks.to_f / @total_tasks) * 100 %>
+		  	<%= number_with_precision(@precision, :precision => 2) %>&#37;
+		
+</p>
+<p>
+  <b>Budget:</b>
+  <%= @project.budget %>
+</p>
+
+<p>
+  <b>Begin:</b>
+  <%= @project.begin %>
+</p>
+
+<p>
+  <b>End:</b>
+  <%= @project.end %>
+</p>
+
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', "/projects/company/#{@company_id}" %>

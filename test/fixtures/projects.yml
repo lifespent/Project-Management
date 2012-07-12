@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  budget: 9.99
+  begin: 2012-04-28
+  end: 2012-04-28
+
+two:
+  title: MyString
+  budget: 9.99
+  begin: 2012-04-28
+  end: 2012-04-28
