@@ -10,7 +10,7 @@
 <% @companies.each do |company| %>
 <% project_querry(company.id) %>
 <div class="one-third columns">
-   <h5><%= link_to company.name, "/projects/company/#{company.id}" %></h5>
+   <h5><%= link_to company.name, "/projects/company/#{company.id}" %>  | <%= link_to 'Edit', edit_company_path(company) %> <%= link_to 'Destroy', company, confirm: 'Are you sure?', method: :delete %></h5>
    <h6>	<% if @total == 0 %>
 	<p><%= link_to "Create New Project", "/projects/new/#{company.id}" %></p>
 	<% else %>
