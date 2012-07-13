@@ -18,7 +18,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1.json
   def show
     @company = Company.find(params[:id])
-     if !owner?(@company.id)
+     if owner?(@company.id) != true
           redirect_to('/401')
       else
     respond_to do |format|
@@ -42,7 +42,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1/edit
   def edit
     @company = Company.find(params[:id])
-    if !owner?(@company.id)
+    if owner?(@company.id) != true
         redirect_to('/401')
     end
   end
@@ -83,7 +83,7 @@ class CompaniesController < ApplicationController
   # DELETE /companies/1.json
   def destroy
     @company = Company.find(params[:id])
-     if !owner?(@company.id)
+     if owner?(@company.id) != true
          respond_to do |format|
              format.html { redirect_to companies_url }
              format.json { head :no_content }
