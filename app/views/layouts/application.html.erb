@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Manage</title>
+  <title>INNO Manage Version 0.1</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
 <%= javascript_include_tag "http://www.appelsiini.net/download/jquery.jeditable.js" %>
@@ -11,17 +11,21 @@
 <body>
 	<div class="container">
 		<div class="sixteen columns">
-					<h1 class="remove-bottom" style="margin-top: 40px">Inno Manage</h1>
+					<h1 class="remove-bottom" style="margin-top: 40px">INNOPAR PM</h1>
 					
-					<h5>Version 0.1 | <% if user_signed_in? %>
-					Welcome, <%= current_user.email %> <%= link_to 'Logout', '/sign_out' %>
+					<h5><% if user_signed_in? %> <%= link_to "Home", root_path %> &nbsp; &nbsp; <%= link_to 'Edit Profile', '/users/edit' %> &nbsp; &nbsp; |
+					&nbsp; &nbsp; Welcome, <%= current_user.email %> &nbsp; &nbsp; | &nbsp; &nbsp; <%= link_to 'Logout', '/sign_out' %>
 					<% else %>
-					Welcome, guest.
+					Welcome, <strong>guest</strong>. Please <%= link_to "sign in", new_session_path(resource_name) %> or <%= link_to "sign up", new_registration_path(resource_name) %>!
 					<% end %>
-					</h5>
+				</h5><% if !notice.nil? %><p class="notice"><strong><%= notice %></strong></p> <% end %> <% if !alert.nil? %> <p class="alert"><strong><%= alert %></strong></p> <% end %>
 					<hr />
 				</div>
 <%= yield %>
+	<div class="sixteen columns">
+		<h6 style="font-size:10px; color:#777; float:right; display:block; padding-bottom:10px;">Copyright &copy; 2012 by <%= link_to "INNOPAR", 'http://www.innopar.com', :target => "_blank"  %> Version <strong>Alpha</strong></h6>
+	</div>
 	</div><!-- container -->
+		
 </body>
 </html>
