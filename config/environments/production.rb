@@ -10,15 +10,6 @@ Manage::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'pm.innopar.com' }
   
-  config.action_mailer.smtp_settings = {
-       :address              => "smtp.gmail.com",
-       :port                 => 587,
-       :domain               => 'innopar.com',
-       :user_name            => 'pm@innopar.com',
-       :password             => 'pofe4a6b',
-       :authentication       => :plain,
-       :enable_starttls_auto => true  }
-       
        
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
