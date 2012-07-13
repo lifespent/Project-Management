@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
   def show
         @project = Project.find(params[:id])
         @milestone = Milestone.find :all, :order => 'position', :conditions => ['project_id = ?', params[:id]] 
-       if project_owner?(@project.id)
+       if project_owner?(@project.id) == true
         respond_to do |format|
           format.html # show.html.erb
           format.json { render json: @project }
@@ -61,7 +61,7 @@ class ProjectsController < ApplicationController
   def edit
 
     @project = Project.find(params[:id])
-  if project_owner?(@project.id)
+  if project_owner?(@project.id) == true
      @companies =  Company.all
    else 
      redirect_to('/401')
@@ -88,7 +88,7 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.json
   def update
       @project = Project.find(params[:id])
-      if project_owner?(@project.id)
+      if project_owner?(@project.id) == true
       @project.update_attributes!(params[:project])
 
       respond_to do |format|
@@ -110,7 +110,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1.json
   def destroy
     @project = Project.find(params[:id])
-    if project_owner?(@project.id)
+    if project_owner?(@project.id) == true
     @project.destroy
 
     respond_to do |format|

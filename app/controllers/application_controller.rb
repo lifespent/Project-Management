@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
           @companies.each do |company|
             @projects = Project.find :all, :conditions => ['company_id = ?', company.id]
               @projects.each do |project|
-                return true if project.id == project_id
+                 return true if project.id == project_id 
               end
           end 
     end

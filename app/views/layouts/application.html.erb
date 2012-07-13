@@ -8,11 +8,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if user_signed_in? %>
-<h4>Welcome, <%= current_user.email %> <%= link_to 'Logout', '/sign_out' %></h4>
-<% else %>
-<h4>Welcome, guest.</h4>
-<% end %>
+	<div class="container">
+		<div class="sixteen columns">
+					<h1 class="remove-bottom" style="margin-top: 40px">Inno Manage</h1>
+					
+					<h5>Version 0.1 | <% if user_signed_in? %>
+					Welcome, <%= current_user.email %> <%= link_to 'Logout', '/sign_out' %>
+					<% else %>
+					Welcome, guest.
+					<% end %>
+					</h5>
+					<hr />
+				</div>
 <%= yield %>
+	</div><!-- container -->
 </body>
 </html>
