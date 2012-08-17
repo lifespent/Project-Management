@@ -12,9 +12,9 @@ Manage::Application.configure do
   ActionMailer::Base.smtp_settings = {  
     :address              => "smtp.gmail.com",  
     :port                 => 587,  
-    :domain               => "innopar.com",  
-    :user_name            => "pm@innopar.com",  
-    :password             => "pofe4a6b",  
+    :domain               => "###",  
+    :user_name            => "###",  
+    :password             => "###",  
     :authentication       => "plain"
     # :enable_starttls_auto => true # I don't have this, but it should work anyway 
   }
