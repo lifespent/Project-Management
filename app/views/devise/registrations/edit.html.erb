@@ -1,3 +1,4 @@
+<% @users = User.find :all %>
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
@@ -17,7 +18,7 @@
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
   <%= f.password_field :current_password %></div>
 
- <% if current_user.admin == "1" %>
+ <% if current_user.admin == "1" or @users.count == 1 %>
  <div>
   <%= f.check_box :admin %> <span><strong>Administrator</strong></span><br /><br /></div>
 <% end %>

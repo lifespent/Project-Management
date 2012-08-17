@@ -9,7 +9,7 @@
 <% end %>
 	<h4><%= editable_field @project, :title, :onblur => "submit" %></h4>
 	<p id="notice"><%= notice %></p>
-<p>
+<p> 
   <b>Milestones:</b>
   <%= @milestone.count %>
 		<ul class="milestones" data-update-url="<%= sort_milestones_url %>">
@@ -50,13 +50,14 @@
 			<% i =+ 1 %>
 <% end %>
 		</ul>
-			
+<% if @milestone.count > 0 %>			
 <p>
 		  <b>Project Completion:</b>
 			<% @precision = (@complete_tasks.to_f / @total_tasks) * 100 %>
 		  	<%= number_with_precision(@precision, :precision => 2) %>&#37;
 		
 </p>
+<% end %>
 <p>
   <b>Budget:</b>
   <%= @project.budget %>

@@ -7,7 +7,15 @@ Manage::Application.configure do
   config.cache_classes = false
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-
+  ActionMailer::Base.smtp_settings = {  
+    :address              => "smtp.gmail.com",  
+    :port                 => 587,  
+    :domain               => "innopar.com",  
+    :user_name            => "pm@innopar.com",  
+    :password             => "pofe4a6b",  
+    :authentication       => "plain"
+    # :enable_starttls_auto => true # I don't have this, but it should work anyway 
+  }
 
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true

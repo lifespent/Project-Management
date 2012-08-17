@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
       @projects = Project.find :all
     else
       @projects = Project.find :all, :conditions => ['company_id = ?', params[:company_id]]
+      @company_name = Company.find :all, :conditions => ['id = ?', params[:company_id]]
       @companies =  Company.all
     end
      if @projects.count == 0 or !params[:company_id] 
